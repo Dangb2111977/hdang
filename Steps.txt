@@ -1,0 +1,25 @@
+Day 1
+1. First: download libraries needed
+pip install pytesseract
+pip install opencv-python pytesseract mysql-connector-python flask
+2. Download and add it into environment variables
+https://github.com/UB-Mannheim/tesseract/wiki
+3. Test
+import pytesseract
+from PIL import Image
+
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+
+image_path = 'C:\\Users\\Lehuy\\Downloads\\NLCN images\\451114393_1209628690190101_6357601146431663318_n.jpg'
+
+image = Image.open(image_path)
+
+text = pytesseract.image_to_string(image)
+
+print(text)
+
+4. LabelImg
+cd C:\Users\Lehuy\Downloads\NLCN images\labelImg-master
+pyrcc5 -o libs/resources.py resources.qrc
+python labelImg.py
+

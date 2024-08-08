@@ -146,4 +146,3 @@ finally:
         conn.close()
         print("Kết nối đã được đóng")
     cv2.destroyAllWindows()
-qq
