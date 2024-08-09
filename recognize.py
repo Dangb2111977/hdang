@@ -9,8 +9,16 @@ from datetime import datetime
 # Cấu hình đường dẫn tới tesseract.exe
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
+# Đường dẫn mô hình
+model_path = 'studentcardmodeltwo.h5'
+
 # Tải mô hình đã lưu
-model = tf.keras.models.load_model('student_card_model.h5')
+try:
+    model = tf.keras.models.load_model(model_path)
+    print("Mô hình đã được tải thành công.")
+except Exception as e:
+    print(f"Không thể tải mô hình: {e}")
+    raise
 
 def preprocess_image(image):
     """Tiền xử lý hình ảnh để phù hợp với đầu vào của mô hình."""
@@ -26,6 +34,7 @@ def predict(image):
     return predictions
 
 def extract_info_from_lines(text_lines):
+    """Trích xuất thông tin từ các dòng văn bản."""
     school_name = extract_school_name(text_lines)
     student_name = extract_student_name(text_lines)
     student_id = extract_student_id(text_lines)
